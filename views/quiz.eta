@@ -1,0 +1,21 @@
+<% layout("./layouts/auth.eta") %>
+
+<h2> <%= it.questionText %> </h2>
+
+<h3>Answer options</h3>
+
+<% if (it.answerOptions && it.answerOptions.length > 0) { %>
+<ul>
+    <% it.answerOptions.forEach(option => { %>
+        <form method="POST" action="/quiz/<%= it.questionId %>/options/<%= option.id %>"><li>
+        <%= option.option_text %><input type="submit" style="margin-left: 15px;" value="Choose"></li></form>
+    <% }); %>
+</ul>
+
+<% } else { %>
+
+<p>None available</p>
+
+<% } %>
+
+<a href="/quiz">Skip this question</a>

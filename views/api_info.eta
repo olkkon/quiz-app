@@ -1,0 +1,40 @@
+<% if (it.auth){ layout("./layouts/auth.eta") } else { layout("./layouts/unauth.eta") } %>
+
+<h1>API endpoint</h1>
+
+The application provides an API that allows asking for a random question and for answering the random question. The API does not record the answers to the database.<br/><br/>
+
+<h3>Return randomly selected question</h3>
+
+Usage: GET request to address /api/questions/random.<br/>
+
+Return (sample data):
+
+<pre>
+{
+  "questionId": 1,
+  "questionTitle": "Some arithmetics",
+  "questionText": "How much is 1+1?",
+  "answerOptions": [
+    { "optionId": 1, "optionText": "2" },
+    { "optionId": 2, "optionText": "4" },
+    { "optionId": 3, "optionText": "6" },
+  ]
+}
+</pre><br/>
+
+<h3>Answering the question</h3>
+
+Usage: POST request to address /api/questions/answer, where body of the request contains json document as below:<br/>
+
+<pre>
+{
+  "questionId": 1,
+  "optionId": 3,
+}
+</pre>
+
+Return: If the query is successful, return will contain attribute called 'correct' which tells if the answer was correct or not. If the query is not correct,
+the answer will contain attribute called 'error' which have textual description of the error.
+
+

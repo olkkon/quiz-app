@@ -1,0 +1,6 @@
+<% layout("./layouts/auth.eta") %>
+
+<h1>Log out</h1>
+
+You have been logged in as <b><%= it.email %></b>.<br/>
+<a href="/auth/logout">Log out</a>

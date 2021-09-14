@@ -1,0 +1,32 @@
+<% layout("./layouts/auth.eta") %>
+
+<h1> Statistics </h1>
+
+Currently logged in as <b><%= it.email %></b><br/><br/>
+
+<h2> Own questions </h2>
+
+You have given so far <%= it.numberOfAnswers %> answers of which <%= it.numberOfCorrectAnswers %> are correct.<br/>
+Questions made by you have been answered <%= it.otherAnswers %> times so far by other users.<br/><br/>
+
+<h2> Most answered questions</h2>
+
+<% if (it.mostAnsweredQuestions && it.mostAnsweredQuestions.length > 0) { %>
+List below shows five users who have answered questions the most. If the list does not contain five entries, then there does not
+exist that many users who have made answers at all.<br/><br/>
+
+<table>
+<tr><td>Place</td><td>Email</td><td>Number of answers</td></tr>
+    <% for (let i = 0; i < it.mostAnsweredQuestions.length; i++) { %>
+        <tr>
+            <td><b><%= i+1 %></b></td>
+            <td><%= it.mostAnsweredQuestions[i].email %></td>
+            <td><%= it.mostAnsweredQuestions[i].count %></td>
+        </tr>
+    <% } %>
+</table>
+<% } else { %>
+
+<p>No answers to questions so far</p>
+
+<% } %>

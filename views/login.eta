@@ -1,0 +1,19 @@
+<% layout("./layouts/unauth.eta") %>
+
+<h1>Login form</h1>
+
+<% if (it.error && it.error.length > 0) { %>
+
+<b style="color: red;"><%= it.error %></b>
+
+<% } %>
+
+<form method="POST" action="/auth/login">
+  Email:<br/>
+  <input type="email" name="email" /><br/>
+  Password:<br/>
+  <input type="password" name="password" /><br/>
+  <input type="submit" value="Login" />
+</form>
+
+Still not registered? <a href="/auth/register">Register!</a>

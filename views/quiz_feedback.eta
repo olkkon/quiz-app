@@ -1,0 +1,15 @@
+<% layout("./layouts/auth.eta") %>
+
+<% if (it.correct) { %>
+
+<h1> Correct! </h1>
+
+<% } else { %>
+
+<h1> Incorrect! </h1>
+
+<h2> The correct option was <%= it.text %> </h2>
+
+<% } %>
+
+<a href="/quiz">Next question</a>

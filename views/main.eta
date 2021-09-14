@@ -1,0 +1,11 @@
+<% if (it.auth){ layout("./layouts/auth.eta") } else { layout("./layouts/unauth.eta") } %>
+
+<h1>Quiz application</h1>
+
+In this application one can create and answer questions created by other users. Starting to use the application
+requires you to <a href="/auth/register">register</a>, but if you have done that earlier, just <a href="/auth/login">log in!</a>
+Application provides some statistical data on users and answers given by them, as well as api-endpoint at <a href="/api/questions">/api/questions.</a><br/><br/>
+
+Application has been implemented as an exercise work for Aalto University course Web Software Development.
+
+

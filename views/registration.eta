@@ -1,0 +1,30 @@
+<% if (it.authEmail){ layout("./layouts/auth.eta") } else { layout("./layouts/unauth.eta") } %>
+
+<h1>Registration form</h1>
+
+In this page you can register yourself as a user to the application. Note that this application is done solely on learning purposes,
+and it does not have any real functional purpose, thus end user is fully responsible for all personal data that is sent to the server.<br/><br/>
+
+<% if (it.errors) { %>
+<ul>
+    <% Object.keys(it.errors).forEach((attribute) => { %>
+        <% Object.values(it.errors[attribute]).forEach((err) => { %>
+            <li><%= err %></li>
+        <% }); %>
+    <% }); %>
+</ul>
+<% } %>
+
+<form method="POST" action="/auth/register">
+  Email:<br/>
+  <input type="email" name="email" value="<%= it.email %>" /><br/>
+  Password:<br/>
+  <input type="password" name="password" value="<%= it.password %>" /><br/>
+  <input type="submit" value="Register" />
+</form>
+
+<% if (it.authEmail) { %>
+Already logged in as <b><%= it.authEmail %></b>. Registering new user will log out current user.
+<% } else { %>
+Already registered? <a href="/auth/login">Log in!</a>
+<% } %>

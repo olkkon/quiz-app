@@ -1,0 +1,58 @@
+<% layout("./layouts/auth.eta") %>
+
+<h1> <%= it.title %> </h1>
+
+<p> <%= it.questionText %> </p>
+
+<% if (it.answerOptions.length == 0) { %>
+<form method="POST" action="/questions/<%= it.id %>/delete">
+    <input type="submit" value="Delete question">
+</form>
+<% } %>
+
+<h3>Current answer options</h3>
+
+<% if (it.answerOptions && it.answerOptions.length > 0) { %>
+<ul id="answerOptions">
+    <% it.answerOptions.forEach(option => { %>
+        <form method="POST" action="/questions/<%= it.id %>/options/<%= option.id %>/delete"><li>
+        <% if (option.is_correct){ %>
+            <b style="color: green;" class="true"><%= option.option_text %></b>
+        <% } else { %>
+            <b style="color: red;" class="false"><%= option.option_text %></b>
+        <% } %>
+        <input type="submit" style="margin-left: 15px;" value="Delete option"></li></form>
+    <% }); %>
+</ul>
+
+<div id="warning"></div>
+
+<% } else { %>
+
+<p>None available</p>
+
+<% } %>
+
+<h3> Add an answer option </h3>
+
+<% if (it.errors) { %>
+<ul>
+    <% Object.keys(it.errors).forEach((attribute) => { %>
+        <% Object.values(it.errors[attribute]).forEach((err) => { %>
+            <li><b style="color: red;"><%= err %></b></li>
+        <% }); %>
+    <% }); %>
+</ul>
+<% } %>
+
+<form method="POST" action="/questions/<%= it.id %>/options">
+Option text:<br/>
+<textarea name="option_text" value="<%= it.optionText %>" /></textarea><br/>
+Correctness:<br/>
+<input type="checkbox" name="is_correct" <% if (it.isCorrect) { %> checked <% } %> /><br/> 
+<input type="submit" value="Send">
+</form>
+
+<a href="/questions/">Back to all questions</a><br/><br/>
+
+<script src="../static/eng.js" defer></script>
