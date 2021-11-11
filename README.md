@@ -2,8 +2,6 @@
 # Quiz application
 
 In this application one can create and answer questions created by other users. Starting to use the application requires you to register, but if you have done that earlier, just log in! Application provides some statistical data on users and answers given by them, as well as api-endpoint at /api/questions.
-  
-Application has been implemented as an exercise work for Aalto University course Web Software Development.
 
 ## How to start using application
 
@@ -49,9 +47,6 @@ CREATE UNIQUE INDEX ON users((lower(email)));
 The application can be run locally in the terminal using following command:
 `deno run --allow-all --unstable run-locally.js`
 Make sure that you are in the root folder of the project when running the command in the terminal.
-
-### Online location
-The application is hosted online at address https://wsd-quiz-application.herokuapp.com/
 
 ### Creating some data
 For full experience and easier testing of the application, it is recommended to follow the steps below.
